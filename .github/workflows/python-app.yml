@@ -27,7 +27,7 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
          python -m pip install playwright
     - name: isure playwright browsers are installed
-      run: python-m playwright install
+      run: python -m playwright install
 
     - name: Lint with flake8
       run: |

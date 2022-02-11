@@ -1,5 +1,10 @@
+import os
+
+import Demos.security.security_enums
 from playwright.sync_api import Playwright
 import pytest
+
+import utils.secret_config
 
 
 @pytest.fixture(scope="session")
@@ -29,6 +34,7 @@ def set_up_login(set_up):
     page.click("input[name=\"email\"]")
     page.fill("input[name=\"email\"]", "humblecat4real@yahoo.com")
     page.click("input[name=\"passwd\"]")
-    page.fill("input[name=\"passwd\"]", "Hunter")
+    #page.fill("input[name=\"passwd\"]", utils.secret_config.PASSWORD)
+    page.fill("input[name=\"passwd\"]", os.environ['PASSWORD'])
     page.click("button:has-text(\"Sign in\")")
-    assert page.is_visible("text=Hunter Doe")
+    #assert page.is_visible("text=Hunter Doe")

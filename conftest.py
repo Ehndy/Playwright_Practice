@@ -1,8 +1,12 @@
 import os
 
-
-
 import pytest
+
+try:
+    PASSWORD = os.environ["PASSWORD"]
+except KeyError:
+    import utils.secret_config
+    PASSWORD = utils.secret_config.PASSWORD
 
 
 
@@ -35,6 +39,6 @@ def set_up_login(set_up):
     page.fill("input[name=\"email\"]", "humblecat4real@yahoo.com")
     page.click("input[name=\"passwd\"]")
     #page.fill("input[name=\"passwd\"]", utils.secret_config.PASSWORD)
-    page.fill("input[name=\"passwd\"]", os.environ["PASSWORD"])
+    page.fill("input[name=\"passwd\"]", PASSWORD)
     page.click("button:has-text(\"Sign in\")")
     #assert page.is_visible("text=Hunter Doe")

@@ -6,9 +6,8 @@ try:
     PASSWORD = os.environ["PASSWORD"]
 except KeyError:
     import utils.secret_config
+
     PASSWORD = utils.secret_config.PASSWORD
-
-
 
 
 @pytest.fixture(scope="session")
@@ -24,7 +23,6 @@ def set_up(browser):
     page.close()
 
 
-
 @pytest.fixture(scope="session")
 def set_up_login(set_up):
     page = set_up
@@ -38,7 +36,7 @@ def set_up_login(set_up):
     page.click("input[name=\"email\"]")
     page.fill("input[name=\"email\"]", "humblecat4real@yahoo.com")
     page.click("input[name=\"passwd\"]")
-    #page.fill("input[name=\"passwd\"]", utils.secret_config.PASSWORD)
+    # page.fill("input[name=\"passwd\"]", utils.secret_config.PASSWORD)
     page.fill("input[name=\"passwd\"]", PASSWORD)
     page.click("button:has-text(\"Sign in\")")
-    #assert page.is_visible("text=Hunter Doe")
+    # assert page.is_visible("text=Hunter Doe")

@@ -18,6 +18,7 @@ def set_up(browser):
     context = browser.new_context()
     page = context.new_page()
     page.goto("http://automationpractice.com/index.php")
+    page.set_default_timeout(50000)
 
     yield page
     page.close()
